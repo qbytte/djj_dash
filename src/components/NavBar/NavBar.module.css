@@ -1,0 +1,47 @@
+.container {
+  background: #f13030;
+  border-radius: 26px;
+  width: 100px;
+  min-height: 90vh;
+  padding: 58px 0 58px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.container button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2.2rem;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.container button:hover {
+  color: #f6e8ea;
+}
+
+.mainBtnContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 138px;
+  align-items: center;
+  gap: 24px;
+}
+
+.mainBtnContainer button {
+  width: 42px;
+  height: 42px;
+}
+
+.catBtnContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: center;
+  flex-wrap: wrap;
+}
