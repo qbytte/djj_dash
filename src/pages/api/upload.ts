@@ -106,17 +106,46 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
         }
       }
 
-      try {
-        const casesWithSite = await prisma.cases.createMany({
-          data: cases,
-          skipDuplicates: true,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    });
+      
 
-  res.send("Imported");
+      const dbCases = await prisma.cases.findMany();
+
+      if (dbCases.length === 0) {
+        try {
+          const createCases = await prisma.cases.createMany({
+            data: cases,
+            skipDuplicates: true,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        for (let siteCase of cases) {
+          const upsertCases = await prisma.cases.upsert({
+            where: {
+              id: siteCase.id,
+            },
+            update: {
+              status: siteCase.status,
+              queue: siteCase.queue,
+            },
+            create: {
+              id: siteCase.id,
+              date: siteCase.date,
+              status: siteCase.status,
+              queue: siteCase.queue,
+              siteId: siteCase.siteId,
+              subject: siteCase.subject,
+              stealthNotes: siteCase.stealthNotes,
+              notes: siteCase.notes,
+              atention: siteCase.atention,
+            }
+          });
+        }
+      }
+
+      res.send("Imported");
+    });
 };
 
 export default upload;
