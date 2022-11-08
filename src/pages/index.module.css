@@ -1,0 +1,29 @@
+.container {
+    display: grid;
+    grid-template-areas: 
+        "nav header"
+        "nav content";
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 1fr 6fr;
+    height: 100vh;
+}
+
+.nav {
+    grid-area: nav;
+    place-self: center;
+}
+
+.header {
+    grid-area: header;
+    margin-top: 30px;
+}
+
+.content {
+    display: grid;
+    padding: 12px;
+    row-gap: 40px;
+    place-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));   
+    height: fit-content;
+    
+}
