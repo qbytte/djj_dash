@@ -106,8 +106,6 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
         }
       }
 
-      
-
       const dbCases = await prisma.cases.findMany();
 
       if (dbCases.length === 0) {
@@ -139,13 +137,12 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
               stealthNotes: siteCase.stealthNotes,
               notes: siteCase.notes,
               atention: siteCase.atention,
-            }
+            },
           });
         }
       }
-
-      res.send("Imported");
     });
+  res.send("Imported");
 };
 
 export default upload;
