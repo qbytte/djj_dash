@@ -12,7 +12,6 @@ const examples = async (req: NextApiRequest, res: NextApiResponse) => {
         { name: "River Metals Recycling", alt: "RMR" },
         { name: "Texas Port Recycling", alt: "TPR" },
         { name: "Trademark Metals Recycling", alt: "TMR" },
-        { name: "U-Pull and Pay", alt: "UPAP" },
         { name: "U-Pull-&-Pay", alt: "UPAP" },
         { name: "Western Metals Recycling", alt: "WMR" },
       ]

@@ -4,8 +4,12 @@ import Header from "../components/Header/Header";
 import NavBar from "../components/NavBar/NavBar";
 import CatCard from "../components/CatCard/CatCard";
 import styles from "./index.module.css";
+import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
+  const { data, isLoading } = trpc.categories.getAll.useQuery();
+  console.log(data);
+
   return (
     <>
       <Head>
@@ -21,14 +25,18 @@ const Home: NextPage = () => {
           <Header title="Welcome you fuck" />
         </div>
         <div className={styles.content}>
-          <CatCard />
-          <CatCard />
-          <CatCard />
-          <CatCard />
-          <CatCard />
-          <CatCard />
-          <CatCard />
-          <CatCard />
+          {isLoading ? (
+            <div>Cargando matraka</div>
+          ) : (
+            data?.map((customer) => (
+              <CatCard
+                key={customer.id}
+                title={customer.alt}
+                needsAttention={customer.cases.filter((c) => c.atention === true).length}
+                totalCases={customer.cases.length}
+              />
+            ))
+          )}
         </div>
       </div>
     </>

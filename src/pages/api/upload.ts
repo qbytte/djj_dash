@@ -35,6 +35,7 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
     queue: string;
     site?: string;
     siteId: string;
+    customerId: string;
     subject: string;
     stealthNotes: string;
     notes: string;
@@ -62,6 +63,7 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
         queue: row["Queue"],
         site: row.Site,
         siteId: "",
+        customerId: "",
         subject: row["Case Subject"],
         stealthNotes: "",
         notes: "",
@@ -101,6 +103,7 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
         for (let site of dbSites) {
           if (siteCase.site?.includes(`${site.name}`)) {
             siteCase.siteId = site.id;
+            siteCase.customerId = site.customerId;
             delete siteCase.site;
           }
         }
@@ -133,6 +136,7 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
               status: siteCase.status,
               queue: siteCase.queue,
               siteId: siteCase.siteId,
+              customerId: siteCase.customerId,
               subject: siteCase.subject,
               stealthNotes: siteCase.stealthNotes,
               notes: siteCase.notes,

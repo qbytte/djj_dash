@@ -3,7 +3,7 @@
 
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["referentialIntegrity"]
+    previewFeatures = ["referentialIntegrity", "filteredRelationCount"]
 }
 
 datasource db {
@@ -62,6 +62,7 @@ model Customer {
     name  String
     alt   String
     sites Site[]
+    cases Cases[]
 }
 
 model Site {
@@ -81,11 +82,13 @@ model Cases {
     status       String
     queue        String
     siteId       String
+    customerId   String
     subject      String  @db.Text
     stealthNotes String
     notes        String
     atention     Boolean
     site         Site    @relation(fields: [siteId], references: [id])
+    customer     Customer @relation(fields: [customerId], references: [id])
 
-    @@index([siteId])
+    @@index([siteId, customerId])
 }
