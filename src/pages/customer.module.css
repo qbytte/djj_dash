@@ -1,0 +1,22 @@
+.gridContainer {
+    display: grid;
+    grid-template-areas: 
+        "nav header"
+        "nav content"
+        "nav footer";
+    ;
+    grid-template-columns: 0fr 1fr;
+    grid-template-rows: 0fr 1fr 1fr;
+    height: 100vh;
+}
+
+.nav {
+    grid-area: nav;
+    place-self: center;
+    padding: 34px;
+}
+
+.header {
+    grid-area: header;
+    margin-top: 34px;
+}

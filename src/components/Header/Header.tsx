@@ -2,7 +2,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import styles from './Header.module.css';
 
 interface Props {
-    title: string;
+    title: string | undefined;
 }
 
 const Header = ({ title }:Props) => {
