@@ -14,10 +14,10 @@ const Layout = ({ children, title }:LayoutProps) => {
   return (
     <div className={styles.gridContainer}>
       <div className={styles.nav}>
-        <NavBar customers={data} />
+        <NavBar customers={data} isLoading={isLoading} />
       </div>
       <div className={styles.header}>
-        <Header title={title} />
+        <Header title={title} isLoading={isLoading} />
       </div>
       <div className={styles.content}>
         {children}

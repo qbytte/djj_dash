@@ -10,9 +10,10 @@ interface NavBarProps {
         cases: Cases[];
       })[]
     | undefined;
+  isLoading: boolean;
 }
 
-const NavBar = ({ customers }: NavBarProps) => {
+const NavBar = ({ customers, isLoading }: NavBarProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.mainBtnContainer}>
@@ -26,13 +27,17 @@ const NavBar = ({ customers }: NavBarProps) => {
         </button>
       </div>
       <div className={styles.catBtnContainer}>
-        {customers?.map((customer) => (
-          <button key={customer.id} className={styles.homeBtn}>
-            <Link href={`/customer?customer=${customer.id}`}>
-              <p>{customer.alt}</p>
-            </Link>
-          </button>
-        ))}
+        {isLoading ? (
+          <p className={styles.loading}>...</p>
+        ) : (
+          customers?.map((customer) => (
+            <button key={customer.id} className={styles.homeBtn}>
+              <Link href={`/customer?customer=${customer.id}`}>
+                <p>{customer.alt}</p>
+              </Link>
+            </button>
+          ))
+        )}
       </div>
     </div>
   );

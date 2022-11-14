@@ -7,11 +7,13 @@ import { useRouter } from "next/router";
 import { trpc } from "../utils/trpc";
 
 const Customer: NextPage = () => {
-    const router = useRouter();
-    const { customer } = router.query;
-    const { data, isLoading } = trpc.categories.getCustomer.useQuery(customer as string);
+  const router = useRouter();
+  const { customer } = router.query;
+  const { data, isLoading } = trpc.categories.getCustomer.useQuery(
+    customer as string
+  );
 
-    console.log(data)
+  console.log(data);
 
   return (
     <>
@@ -22,8 +24,7 @@ const Customer: NextPage = () => {
       </Head>
       <Layout title={data?.name}>
         <div className={styles.content}>
-            {isLoading ? <p>Loading...</p> : <SiteList sites={data?.sites} />}
-            
+          {isLoading ? <p>Loading...</p> : <SiteList sites={data?.sites} />}
         </div>
       </Layout>
     </>

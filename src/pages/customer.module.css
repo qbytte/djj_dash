@@ -20,3 +20,10 @@
     grid-area: header;
     margin-top: 34px;
 }
+
+.content {
+    grid-area: content;
+    margin-top: 20px;
+    padding: 0 34px;
+    height: 74vh;
+}

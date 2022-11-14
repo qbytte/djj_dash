@@ -1,7 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Header from "../components/Header/Header";
-import NavBar from "../components/NavBar/NavBar";
 import CatCard from "../components/CatCard/CatCard";
 import Layout from "../components/Layout/Layout";
 import styles from "./index.module.css";
@@ -21,7 +19,7 @@ const Home: NextPage = () => {
       <Layout title="Welcome">
         <div className={styles.content}>
           {isLoading ? (
-            <div>Cargando matraka</div>
+            <div>Loading...</div>
           ) : (
             data?.map((customer) => (
               <CatCard
@@ -36,28 +34,6 @@ const Home: NextPage = () => {
           )}
         </div>
       </Layout>
-      {/* <div className={styles.gridContainer}>
-        <div className={styles.nav}>
-          <NavBar customers={data} />
-        </div>
-        <div className={styles.header}>
-          <Header title="Welcome you fuck" />
-        </div>
-        <div className={styles.content}>
-          {isLoading ? (
-            <div>Cargando matraka</div>
-          ) : (
-            data?.map((customer) => (
-              <CatCard
-                key={customer.id}
-                title={customer.alt}
-                needsAttention={customer.cases.filter((c) => c.atention === true).length}
-                totalCases={customer.cases.length}
-              />
-            ))
-          )}
-        </div>
-      </div> */}
     </>
   );
 };

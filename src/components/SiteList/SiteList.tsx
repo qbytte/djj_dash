@@ -1,4 +1,5 @@
 import { Site } from "@prisma/client";
+import styles from "./SiteList.module.css";
 
 interface SiteListProps {
   sites: Site[] | undefined;
@@ -6,9 +7,10 @@ interface SiteListProps {
 
 const SiteList = ({ sites }:SiteListProps) => {
   return (
-    <div>
+    <div className={styles.container}>
+      <p className={styles.title}>Site</p>
       {sites?.map((site) => (
-        <p>{site?.name}</p>
+        <button>{site?.name}</button>
       ))}
     </div>
   )
