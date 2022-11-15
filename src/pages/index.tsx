@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import CatCard from "../components/CatCard/CatCard";
 import Layout from "../components/Layout/Layout";
+import Link from "next/link";
 import styles from "./index.module.css";
 import { trpc } from "../utils/trpc";
 
@@ -29,6 +30,7 @@ const Home: NextPage = () => {
                   customer.cases.filter((c) => c.atention === true).length
                 }
                 totalCases={customer.cases.length}
+                customerId={customer.id}
               />
             ))
           )}
