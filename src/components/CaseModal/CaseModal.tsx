@@ -1,4 +1,6 @@
 import { Cases } from "@prisma/client";
+import { useState } from "react";
+import { AiOutlineCloseCircle, AiFillEdit, AiOutlineCheckCircle } from "react-icons/ai";
 import styles from "./CaseModal.module.css";
 
 interface CaseModalProps {
@@ -8,15 +10,34 @@ interface CaseModalProps {
   setModal: (modal: boolean) => void;
 }
 
-const CaseModal = ({ currentCase, customer, site, setModal }: CaseModalProps) => {
+const CaseModal = ({
+  currentCase,
+  customer,
+  site,
+  setModal,
+}: CaseModalProps) => {
+  const [edit, setEdit] = useState(false);
+
   return (
-    <div className={styles.background}
-      onClick={() => setModal(false)}
-    >
+    <div className={styles.background}>
       <div className={styles.container}>
-        <span className={styles.title}>
-          <p>Case:</p> {currentCase?.id}
-        </span>
+        <div className={styles.top}>
+          <span className={styles.title}>
+            <p>Case:</p> {currentCase?.id}
+          </span>
+          <div className={styles.btnContainer}>
+            <button onClick={() => setEdit(true)}>
+              <AiFillEdit size={38} />
+            </button>
+            {edit ? (<button>
+              <AiOutlineCheckCircle size={38} color="#63C132"
+                onClick={() => setEdit(false)}
+              />
+            </button>) : (<button onClick={() => setModal(false)}>
+              <AiOutlineCloseCircle size={38} color="F13030" />
+            </button>)}
+          </div>
+        </div>
         <div className={styles.infoContainer}>
           <div>
             <p className={styles.label}>Customer:</p>
@@ -50,11 +71,15 @@ const CaseModal = ({ currentCase, customer, site, setModal }: CaseModalProps) =>
         <div className={styles.notesContainer}>
           <div>
             <p className={styles.label}>Stealth service notes:</p>
-            <p>{currentCase?.stealthNotes}</p>
+            {edit ? (
+              <textarea name="service-notes" id="service-notes" placeholder="Service note..." />
+            ) : <p>{currentCase?.stealthNotes}</p>}
           </div>
           <div>
             <p className={styles.label}>Notes:</p>
-            <p>{currentCase?.notes}</p>
+            {edit ? (
+              <textarea name="service-notes" id="service-notes" placeholder="Note..." />
+            ) : <p>{currentCase?.notes}</p>}
           </div>
         </div>
       </div>

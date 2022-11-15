@@ -9,7 +9,7 @@
 
 .container {
     background: #F2F2F2;
-    width: 80vw;
+    width: 60vw;
     height: fit-content;
     padding: 34px;
     display: flex;
@@ -20,7 +20,24 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     position: absolute;
     top: 25vh;
-    left: calc(50% - 40vw);
+    left: calc(50% - 30vw);
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top .btnContainer {
+    display: flex;
+    gap: 12px;
+}
+
+.btnContainer button {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
 
 .title {
@@ -47,4 +64,28 @@
 .notesContainer {
     display: flex;
     gap: 24px;
+    justify-content: space-around;
+}
+
+.notesContainer div {
+    width: 100%;
+}
+
+.notesContainer p {
+    margin-top: 12px;
+}
+
+
+.notesContainer textarea {
+    margin-top: 12px;
+    width: 100%;
+    height: 20vh;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Roboto', sans-serif;
 }

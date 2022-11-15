@@ -19,7 +19,7 @@
     border-bottom: #656565 1px solid;
 }
 
-.table tr {
+.table tbody tr {
     cursor: pointer;
 }
 

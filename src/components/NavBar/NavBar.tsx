@@ -21,14 +21,18 @@ const NavBar = ({ customers, isLoading }: NavBarProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.mainBtnContainer}>
-        <button className={styles.homeBtn}>
+        <button className={router.pathname === "/" ? styles.active : styles.homeBtn}>
           <Link href={"/"}>
-            <TiHome size={44} />
+            <TiHome
+              size={44}
+            />
           </Link>
         </button>
-        <button>
+        <button className={router.pathname === "/global" ? styles.active : styles.homeBtn}>
           <Link href={"/global"}>
-            <FaGlobeAmericas size={34} />
+            <FaGlobeAmericas
+              size={34}
+            />
           </Link>
         </button>
       </div>

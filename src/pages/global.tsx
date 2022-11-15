@@ -6,8 +6,8 @@ import GlobalTable from "../components/GlobalTable/GlobalTable";
 import { trpc } from "../utils/trpc";
 
 const Global: NextPage = () => {
-    const { data, isLoading } = trpc.categories.getAllCases.useQuery();
-    console.log(data);
+  const { data, isLoading } = trpc.categories.getAllCases.useQuery();
+  console.log(data);
 
   return (
     <>
@@ -17,9 +17,13 @@ const Global: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout title="All cases">
-        <div className={styles.content}>
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <div className={styles.content}>
             <GlobalTable cases={data} />
-        </div>
+          </div>
+        )}
       </Layout>
     </>
   );
