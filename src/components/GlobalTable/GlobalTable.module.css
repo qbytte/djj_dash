@@ -19,6 +19,10 @@
     border-bottom: #656565 1px solid;
 }
 
+.table tr {
+    cursor: pointer;
+}
+
 .head {
     background: #22181C;
     color: #FFFFFF;

@@ -5,9 +5,10 @@ import styles from "./SiteList.module.css";
 interface SiteListProps {
   sites: Site[] | undefined;
   filterCases: (site: string) => void;
+  setCurrentSiteName: (site: string) => void;
 }
 
-const SiteList = ({ sites, filterCases }: SiteListProps) => {
+const SiteList = ({ sites, filterCases, setCurrentSiteName }: SiteListProps) => {
   const [currentSite, setCurrentSite] = useState<string>("");
 
   return (
@@ -28,6 +29,7 @@ const SiteList = ({ sites, filterCases }: SiteListProps) => {
           key={site.id}
           onClick={() => {
             setCurrentSite(site.id);
+            setCurrentSiteName(site.name);
             filterCases(site.id);
             console.log(site.id);
           }}

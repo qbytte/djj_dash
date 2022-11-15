@@ -17,11 +17,13 @@ const Customer: NextPage = () => {
     customer as string
   );
 
+  const [currentSiteName, setCurrentSiteName] = useState<string>("");
+
   useEffect(() => {
     if (data) {
       setCurrentCase(data.cases);
     }
-  }, [data])
+  }, [data]);
 
   const filterCases = (site: string) => {
     if (!site) {
@@ -30,7 +32,7 @@ const Customer: NextPage = () => {
     }
     const filteredCases = data?.cases.filter((c) => c.siteId === site);
     setCurrentCase(filteredCases);
-  }
+  };
 
   return (
     <>
@@ -44,8 +46,16 @@ const Customer: NextPage = () => {
           <p>Loading...</p>
         ) : (
           <div className={styles.content}>
-            <SiteList sites={data?.sites} filterCases={filterCases} />
-            <CaseTable cases={currentCase} />
+            <SiteList
+              sites={data?.sites}
+              filterCases={filterCases}
+              setCurrentSiteName={setCurrentSiteName}
+            />
+            <CaseTable
+              cases={currentCase}
+              customer={data}
+              currentSiteName={currentSiteName}
+            />
           </div>
         )}
       </Layout>

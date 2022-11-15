@@ -1,14 +1,26 @@
 import { Cases, Site, Customer } from "@prisma/client";
+import { useState } from "react";
+import CaseModal from "../CaseModal/CaseModal";
 import styles from "./GlobalTable.module.css";
 
 interface GlobalTableProps {
-  cases: (Cases & {
-    site: Site;
-    customer: Customer;
-})[] | undefined
+  cases:
+    | (Cases & {
+        site: Site;
+        customer: Customer;
+      })[]
+    | undefined;
 }
 
 const GlobalTable = ({ cases }: GlobalTableProps) => {
+  const [modal, setModal] = useState(false);
+  const [currentCase, setCurrentCase] = useState<
+    | (Cases & {
+        site: Site;
+        customer: Customer;
+      })
+    | undefined
+  >(undefined);
   console.log(cases?.length);
 
   return (
@@ -27,7 +39,14 @@ const GlobalTable = ({ cases }: GlobalTableProps) => {
         </thead>
         <tbody>
           {cases?.map((c) => (
-            <tr key={c.id} className={styles.row}>
+            <tr
+              key={c.id}
+              className={styles.row}
+              onClick={() => {
+                setCurrentCase(c);
+                setModal(true);
+              }}
+            >
               <td>{c.id}</td>
               <td>{c.date}</td>
               <td>{c.status}</td>
@@ -39,6 +58,14 @@ const GlobalTable = ({ cases }: GlobalTableProps) => {
           ))}
         </tbody>
       </table>
+      {modal && (
+        <CaseModal
+          customer={currentCase?.customer.name}
+          site={currentCase?.site.name}
+          currentCase={currentCase}
+          setModal={setModal}
+        />
+      )}
     </div>
   );
 };
