@@ -15,9 +15,14 @@ export const categories = router({
         id: input,
       },
       include: {
-        cases: true,
+        cases: {
+          orderBy: {
+            id: "desc",
+          }
+        },
         sites: true,
       },
+      
     });
   })
 });

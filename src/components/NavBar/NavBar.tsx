@@ -2,6 +2,7 @@ import styles from "./NavBar.module.css";
 import { TiHome } from "react-icons/ti";
 import { FaGlobeAmericas } from "react-icons/fa";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Customer, Cases } from "@prisma/client";
 
 interface NavBarProps {
@@ -14,6 +15,9 @@ interface NavBarProps {
 }
 
 const NavBar = ({ customers, isLoading }: NavBarProps) => {
+  const router = useRouter();
+  const { customer } = router.query;
+
   return (
     <div className={styles.container}>
       <div className={styles.mainBtnContainer}>
@@ -30,10 +34,12 @@ const NavBar = ({ customers, isLoading }: NavBarProps) => {
         {isLoading ? (
           <p className={styles.loading}>...</p>
         ) : (
-          customers?.map((customer) => (
-            <button key={customer.id} className={styles.homeBtn}>
-              <Link href={`/customer?customer=${customer.id}`}>
-                <p>{customer.alt}</p>
+          customers?.map((c) => (
+            <button key={c.id} className={styles.homeBtn}>
+              <Link href={`/customer?customer=${c.id}`}>
+                <p
+                className={c.id === customer ? styles.active : ""}
+                >{c.alt}</p>
               </Link>
             </button>
           ))
