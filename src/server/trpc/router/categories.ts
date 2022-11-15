@@ -24,5 +24,16 @@ export const categories = router({
       },
       
     });
-  })
+  }),
+  getAllCases: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.cases.findMany({
+      include: {
+        customer: true,
+        site: true,
+      },
+      orderBy: {
+        id: "desc",
+      }
+    });
+  }),
 });

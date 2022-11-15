@@ -27,7 +27,9 @@ const NavBar = ({ customers, isLoading }: NavBarProps) => {
           </Link>
         </button>
         <button>
-          <FaGlobeAmericas size={34} />
+          <Link href={"/global"}>
+            <FaGlobeAmericas size={34} />
+          </Link>
         </button>
       </div>
       <div className={styles.catBtnContainer}>
@@ -37,9 +39,9 @@ const NavBar = ({ customers, isLoading }: NavBarProps) => {
           customers?.map((c) => (
             <button key={c.id} className={styles.homeBtn}>
               <Link href={`/customer?customer=${c.id}`}>
-                <p
-                className={c.id === customer ? styles.active : ""}
-                >{c.alt}</p>
+                <p className={c.id === customer ? styles.active : ""}>
+                  {c.alt}
+                </p>
               </Link>
             </button>
           ))

@@ -1,11 +1,14 @@
-import { Cases } from "@prisma/client";
-import styles from "./CaseTable.module.css";
+import { Cases, Site, Customer } from "@prisma/client";
+import styles from "./GlobalTable.module.css";
 
-interface CaseTableProps {
-  cases: Cases[] | undefined;
+interface GlobalTableProps {
+  cases: (Cases & {
+    site: Site;
+    customer: Customer;
+})[] | undefined
 }
 
-const CaseTable = ({ cases }: CaseTableProps) => {
+const GlobalTable = ({ cases }: GlobalTableProps) => {
   console.log(cases?.length);
 
   return (
@@ -17,6 +20,8 @@ const CaseTable = ({ cases }: CaseTableProps) => {
             <th>Date</th>
             <th>Status</th>
             <th>Queue</th>
+            <th>Group</th>
+            <th>Site</th>
             <th>Needs atention</th>
           </tr>
         </thead>
@@ -27,6 +32,8 @@ const CaseTable = ({ cases }: CaseTableProps) => {
               <td>{c.date}</td>
               <td>{c.status}</td>
               <td>{c.queue}</td>
+              <td>{c.customer.alt}</td>
+              <td>{c.site.name}</td>
               {c.atention ? <td>Yes</td> : <td>No</td>}
             </tr>
           ))}
@@ -36,4 +43,4 @@ const CaseTable = ({ cases }: CaseTableProps) => {
   );
 };
 
-export default CaseTable;
+export default GlobalTable;
