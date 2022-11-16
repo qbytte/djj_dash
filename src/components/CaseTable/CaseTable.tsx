@@ -29,6 +29,7 @@ const CaseTable = ({ cases, customer, currentSiteName, refetchear }: CaseTablePr
             <th>Date</th>
             <th>Status</th>
             <th>Queue</th>
+            <th>Notes</th>
             <th>Needs atention</th>
           </tr>
         </thead>
@@ -46,6 +47,7 @@ const CaseTable = ({ cases, customer, currentSiteName, refetchear }: CaseTablePr
               <td>{c.date}</td>
               <td>{c.status}</td>
               <td>{c.queue}</td>
+              <td>{c.notes}</td>
               {c.atention ? <td>Yes</td> : <td>No</td>}
             </tr>
           ))}

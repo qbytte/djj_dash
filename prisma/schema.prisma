@@ -58,7 +58,7 @@ model VerificationToken {
 }
 
 model Customer {
-    id    String @id @default(cuid())
+    id    String  @id @default(cuid())
     name  String
     alt   String
     sites Site[]
@@ -77,17 +77,17 @@ model Site {
 }
 
 model Cases {
-    id           String  @id
+    id           String   @id
     date         String
     status       String
     queue        String
     siteId       String
     customerId   String
-    subject      String  @db.Text
-    stealthNotes String
-    notes        String
+    subject      String   @db.Text
+    stealthNotes String   @db.Text
+    notes        String   @db.Text
     atention     Boolean
-    site         Site    @relation(fields: [siteId], references: [id])
+    site         Site     @relation(fields: [siteId], references: [id])
     customer     Customer @relation(fields: [customerId], references: [id])
 
     @@index([siteId, customerId])

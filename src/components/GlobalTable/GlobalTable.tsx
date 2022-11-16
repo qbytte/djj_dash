@@ -24,6 +24,7 @@ const GlobalTable = ({ cases, refetchear }: GlobalTableProps) => {
   >(undefined);
   console.log(cases?.length);
 
+
   return (
     <div className={styles.container}>
       <table className={styles.table}>
@@ -35,6 +36,7 @@ const GlobalTable = ({ cases, refetchear }: GlobalTableProps) => {
             <th>Queue</th>
             <th>Group</th>
             <th>Site</th>
+            <th>Notes</th>
             <th>Needs atention</th>
           </tr>
         </thead>
@@ -54,6 +56,7 @@ const GlobalTable = ({ cases, refetchear }: GlobalTableProps) => {
               <td>{c.queue}</td>
               <td>{c.customer.alt}</td>
               <td>{c.site.name}</td>
+              <td>{c.notes}</td>
               {c.atention ? <td>Yes</td> : <td>No</td>}
             </tr>
           ))}
