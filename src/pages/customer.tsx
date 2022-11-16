@@ -13,11 +13,15 @@ const Customer: NextPage = () => {
   const router = useRouter();
   const [currentCase, setCurrentCase] = useState<Cases[] | undefined>([]);
   const { customer } = router.query;
-  const { data, isLoading } = trpc.categories.getCustomer.useQuery(
+  const { data, isLoading, refetch } = trpc.categories.getCustomer.useQuery(
     customer as string
   );
 
   const [currentSiteName, setCurrentSiteName] = useState<string>("");
+
+  const refetchear = () => {
+    refetch();
+  }
 
   useEffect(() => {
     if (data) {
@@ -55,6 +59,7 @@ const Customer: NextPage = () => {
               cases={currentCase}
               customer={data}
               currentSiteName={currentSiteName}
+              refetchear={refetchear}
             />
           </div>
         )}

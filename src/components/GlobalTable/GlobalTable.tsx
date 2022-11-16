@@ -10,9 +10,10 @@ interface GlobalTableProps {
         customer: Customer;
       })[]
     | undefined;
+    refetchear: () => void;
 }
 
-const GlobalTable = ({ cases }: GlobalTableProps) => {
+const GlobalTable = ({ cases, refetchear }: GlobalTableProps) => {
   const [modal, setModal] = useState(false);
   const [currentCase, setCurrentCase] = useState<
     | (Cases & {
@@ -64,6 +65,7 @@ const GlobalTable = ({ cases }: GlobalTableProps) => {
           site={currentCase?.site.name}
           currentCase={currentCase}
           setModal={setModal}
+          refetchear={refetchear}
         />
       )}
     </div>

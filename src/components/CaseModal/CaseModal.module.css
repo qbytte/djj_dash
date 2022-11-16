@@ -19,7 +19,7 @@
     border-radius: 12px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     position: absolute;
-    top: 25vh;
+    top: calc(50% - 30vh);
     left: calc(50% - 30vw);
 }
 
@@ -75,7 +75,6 @@
     margin-top: 12px;
 }
 
-
 .notesContainer textarea {
     margin-top: 12px;
     width: 100%;
@@ -88,4 +87,9 @@
     border-radius: 12px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: 'Roboto', sans-serif;
+}
+
+.checkbox {
+    height: 14px;
+    width: 14px;
 }

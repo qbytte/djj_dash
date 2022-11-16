@@ -13,9 +13,10 @@ interface CaseTableProps {
     | null
     | undefined;
     currentSiteName: string;
+    refetchear: () => void;
 }
 
-const CaseTable = ({ cases, customer, currentSiteName }: CaseTableProps) => {
+const CaseTable = ({ cases, customer, currentSiteName, refetchear }: CaseTableProps) => {
   const [modal, setModal] = useState(false);
   const [currentCase, setCurrentCase] = useState<Cases | undefined>(undefined);
 
@@ -56,6 +57,7 @@ const CaseTable = ({ cases, customer, currentSiteName }: CaseTableProps) => {
           site={currentSiteName}
           currentCase={currentCase}
           setModal={setModal}
+          refetchear={refetchear}
         />
       )}
     </div>

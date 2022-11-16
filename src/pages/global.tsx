@@ -6,8 +6,12 @@ import GlobalTable from "../components/GlobalTable/GlobalTable";
 import { trpc } from "../utils/trpc";
 
 const Global: NextPage = () => {
-  const { data, isLoading } = trpc.categories.getAllCases.useQuery();
+  const { data, isLoading, refetch } = trpc.categories.getAllCases.useQuery();
   console.log(data);
+
+  const refetchear = () => {
+    refetch();
+  };
 
   return (
     <>
@@ -21,7 +25,7 @@ const Global: NextPage = () => {
           <div>Loading...</div>
         ) : (
           <div className={styles.content}>
-            <GlobalTable cases={data} />
+            <GlobalTable cases={data} refetchear={refetchear} />
           </div>
         )}
       </Layout>
