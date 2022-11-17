@@ -1,12 +1,18 @@
 import { AiOutlineSearch } from "react-icons/ai";
+import { useState } from "react";
+import { Cases, Site, Customer } from "@prisma/client";
 import styles from "./Header.module.css";
 
 interface Props {
   title: string | undefined;
   isLoading: boolean;
+  enableSearch: boolean;
+  handleSearch?: (searchValue: string) => void;
 }
 
-const Header = ({ title, isLoading }: Props) => {
+const Header = ({ title, isLoading, enableSearch, handleSearch }: Props) => {
+  const [searchValue, setSearchValue] = useState("");
+  
   return (
     <div className={styles.container}>
       {isLoading ? (
@@ -14,10 +20,21 @@ const Header = ({ title, isLoading }: Props) => {
       ) : (
         <span className={styles.title}>{title}</span>
       )}
-      <div className={styles.search}>
-        <input type="text" />
-        <AiOutlineSearch color="#22181C" size={18} />
-      </div>
+      {enableSearch && (
+        <div className={styles.search}>
+          <input type="text"
+            onChange={(e) => setSearchValue(e.target.value)}
+            onClick={(e) => setSearchValue("")}
+            value={searchValue}
+            placeholder="Search by case number"
+          />
+          <button
+            onClick={() => handleSearch && handleSearch(searchValue)}
+          >
+            <AiOutlineSearch color="#22181C" size={18} />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

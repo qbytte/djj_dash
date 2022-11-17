@@ -14,10 +14,12 @@
 .search {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background: #F2F2F2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
     padding: 4px 14px;
+    width: 224px;
 }
 
 .search input {
@@ -25,4 +27,11 @@
     background: none;
     outline: none;
     color: #22181C;
+}
+
+.search button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
 }
