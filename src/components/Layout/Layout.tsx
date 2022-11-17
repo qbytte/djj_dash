@@ -1,7 +1,6 @@
 import styles from "./Layout.module.css";
 import NavBar from "../NavBar/NavBar";
 import Header from "../Header/Header";
-import { Cases, Site, Customer } from "@prisma/client";
 import { trpc } from "../../utils/trpc";
 
 interface LayoutProps {

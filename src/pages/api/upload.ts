@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../server/db/client";
 import fs from "fs";
 import { parse } from "csv-parse";
-import path from "path";
 
 const upload = async (req: NextApiRequest, res: NextApiResponse) => {
   // console.log(req);
@@ -73,8 +72,8 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
     .on("end", async () => {
       sites.sort((a, b) => (a.name > b.name ? 1 : -1));
 
-      for (let site of sites) {
-        for (let customer of customers) {
+      for (const site of sites) {
+        for (const customer of customers) {
           if (site.name.includes(customer.name)) {
             if (customer.name === "David J Joseph Co") {
               site.customerId = customer.id;
@@ -89,7 +88,7 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       try {
-        const sitesWhithCustomer = await prisma.site.createMany({
+        await prisma.site.createMany({
           data: sites,
           skipDuplicates: true,
         });
@@ -99,8 +98,8 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const dbSites = await prisma.site.findMany();
 
-      for (let siteCase of cases) {
-        for (let site of dbSites) {
+      for (const siteCase of cases) {
+        for (const site of dbSites) {
           if (siteCase.site?.includes(`${site.name}`)) {
             siteCase.siteId = site.id;
             siteCase.customerId = site.customerId;
@@ -113,7 +112,7 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
 
       if (dbCases.length === 0) {
         try {
-          const createCases = await prisma.cases.createMany({
+          await prisma.cases.createMany({
             data: cases,
             skipDuplicates: true,
           });
@@ -121,8 +120,8 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
           console.log(error);
         }
       } else {
-        for (let siteCase of cases) {
-          const upsertCases = await prisma.cases.upsert({
+        for (const siteCase of cases) {
+          await prisma.cases.upsert({
             where: {
               id: siteCase.id,
             },

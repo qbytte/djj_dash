@@ -1,6 +1,5 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { useState } from "react";
-import { Cases, Site, Customer } from "@prisma/client";
 import styles from "./Header.module.css";
 
 interface Props {
@@ -24,7 +23,7 @@ const Header = ({ title, isLoading, enableSearch, handleSearch }: Props) => {
         <div className={styles.search}>
           <input type="text"
             onChange={(e) => setSearchValue(e.target.value)}
-            onClick={(e) => setSearchValue("")}
+            onClick={() => setSearchValue("")}
             value={searchValue}
             placeholder="Search by case number"
             onKeyDown={(e) => {
