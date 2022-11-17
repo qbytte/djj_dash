@@ -27,6 +27,11 @@ const Header = ({ title, isLoading, enableSearch, handleSearch }: Props) => {
             onClick={(e) => setSearchValue("")}
             value={searchValue}
             placeholder="Search by case number"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch && handleSearch(searchValue);
+              }
+            }}
           />
           <button
             onClick={() => handleSearch && handleSearch(searchValue)}

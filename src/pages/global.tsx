@@ -17,7 +17,7 @@ const Global: NextPage = () => {
   const [currentCase, setCurrentCase] = useState(data);
 
   const handleSearch = (searchValue:string) => {
-    const filteredCases = data?.filter((c) => c.id === searchValue);
+    const filteredCases = data?.filter((c) => c.id.includes(searchValue));
     if (searchValue)
       setCurrentCase(filteredCases);
     else 
